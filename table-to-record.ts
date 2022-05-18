@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/** Microlibrary for converting a table to a fully-typed record */
 
 type AnyRows = ReadonlyArray<ReadonlyArray<any>>
 type IdxOf<T extends readonly any[]> = Exclude<keyof T, keyof any[]>
@@ -16,6 +16,18 @@ type Entries<
         }
     }
 
+/** Converts a table to a record.
+ *
+ * @param rows: rectangular array of values
+ * @param header: string array, names of columns
+ * @param keyIdx: index of column to use as key (string)
+ * @returns the generated record (just a plain object)
+ *
+ * @example
+ *  const header = ['id', 'name', 'age'] as const
+ *  const rows = [[555, 'John', 42], [666, 'Jane', 43]] as const
+ *  const rec = tableToRecord(rows, header, '0')
+ */
 export function tableToRecord<
     Rows extends AnyRows,
     Header extends Record<InnerKey<Rows>, string>,

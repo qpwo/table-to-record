@@ -1,6 +1,6 @@
 {
   "name": "table-to-record",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Convert tables to well-typed records. Compactly store large json as tables. Microlibrary.",
   "main": "dist/table-to-record.js",
   "types": "dist/table-to-record.d.ts",
