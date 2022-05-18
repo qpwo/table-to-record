@@ -1,0 +1,30 @@
+{
+  "name": "table-to-record",
+  "version": "1.0.0",
+  "description": "Convert tables to well-typed records. Compactly store large json as tables. Microlibrary.",
+  "main": "dist/table-to-record.js",
+  "types": "dist/table-to-record.d.ts",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "rm -rf dist && tsc table-to-record.ts --declaration --outDir dist && node test/cjs.js && node test/esm.mjs && esr ./test/example.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qpwo/table-to-record.git"
+  },
+  "keywords": [
+    "table",
+    "csv",
+    "record",
+    "typescript",
+    "json"
+  ],
+  "author": "Luke Harold Miles",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qpwo/table-to-record/issues"
+  },
+  "homepage": "https://github.com/qpwo/table-to-record#readme"
+}

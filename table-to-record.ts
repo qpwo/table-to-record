@@ -16,33 +16,21 @@ type Entries<
         }
     }
 
-export function tableToObj<
+export function tableToRecord<
     Rows extends AnyRows,
     Header extends Record<InnerKey<Rows>, string>,
     KeyIdx extends InnerKey<Rows>
 >(rows: Rows, header: Header, keyIdx: KeyIdx): Entries<Rows, Header, KeyIdx> {
     const result = {}
+    const h = header as unknown as string[]
     for (const row of rows) {
         // @ts-expect-error
         const key = row[keyIdx]
         const entry = {}
-        for (const [idx, key] of Object.entries(header)) {
-            // @ts-expect-error
-            entry[key] = row[idx]
+        for (let i = 0; i < h.length; i++) {
+            entry[h[i]] = row[i]
         }
         result[key] = entry
     }
     return result as Entries<Rows, Header, KeyIdx>
-}
-
-function _example() {
-    const rows = [
-        [888, 2, '3', false],
-        [999, 5, '6', true],
-    ] as const
-    const header = ['uid', 'price', 'name', 'is_available'] as const
-    const obj = tableToObj(rows, header, '0')
-    const _f: true = obj[999].is_available
-    const _t: false = obj[888].is_available
-    console.log({ obj })
 }
